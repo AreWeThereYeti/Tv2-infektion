@@ -1,0 +1,39 @@
+
+#popover_content_wrapper{
+	min-height: 300px;
+}
+
+
+/*----------------- Header ----------------*/
+.head{
+	min-height: 150px;
+}
+
+
+/*----------------- Body ----------------*/
+.bannercontainer{
+	height: 180px;
+	width: 930px;
+}
+
+.mandbox{
+	background-image: url("../img/mand.png");
+	height: 200px;
+	width: 147px;
+	 border: 1px solid #666666;
+  position: absolute;
+  z-index: -1;
+}
+
+.kommune{
+min-height: 47px;
+		background-image: url("../img/byskilt.png");
+		background-position: center center;
+		background-repeat: no-repeat;
+
+}
+
+.kommune p{
+	margin-top: 5px;
+	text-align: center;
+}

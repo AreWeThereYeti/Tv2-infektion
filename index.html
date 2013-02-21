@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
+<![endif]-->
+<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+<script>
+    // get the viz.json url from the CartoDB UI
+    // - go to the map tab
+    // - click on share
+    // - go to API tab
+    window.onload = function() {
+      cartodb.createVis('map', 'http://tv2.cartodb.com/api/v1/viz/3638/viz.json');
+    }
+</script>

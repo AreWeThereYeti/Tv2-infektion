@@ -3,49 +3,63 @@
   <head>
       <!-- include jquery.js and jqueryui.js libraries -->
 
+<!--
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+-->
   
-    <script>
-	    $(function() {
-		    $( "#slider" ).slider();
-		});
-	</script>
-    <style>
-      html, body, #map {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-      }
-    </style>
+
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
     <![endif]-->
+    
+      <link rel="stylesheet" href="css/mycss.css" />
+      <script src="js/jquery.js"></script>
+      <script src="js/custom.js"></script>
+      <script src="js/jquery-ui-1.10.1.custom.js"></script>
+
 
   </head>
     
   <body>
-  	<div id="slider"></div>
-<!--     <div id="map"></div>  -->
+  	<div id="graphcontainer">
+  		<div id="time">
+	  		<span class="value day">day_value_from_db</span>/<span class="value month">month_value_from_db</span>/<span class="value year">year_value_from_db</span>
+	  	</div>
+  		<div id="graph"></div>
+  	</div>
+    <div id="map"></div> 
   </body>
 
   <!-- include cartodb.js library -->
   <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
   <script>
 
+/*
+var config = {
+
+  graph: {
+    width: 164,
+    height: 120
+  }
+};
+*/
+	
     function main() {
       cartodb.createVis('map', 'http://tv2.cartodb.com/api/v1/viz/3638/viz.json', {
           shareable: true,
           title: true,
           description: true,
-          search: true,
+          search: false,
           tiles_loader: true,
           center_lat: 56,
           center_lon: 10,
           zoom: 7
       })
+      
+
       .done(function(vis, layers) {
         // layer 0 is the base layer, layer 1 is cartodb layer
         layers[1].on('featureOver', function(e, pos, latlng, data) {
@@ -66,6 +80,5 @@
     window.onload = main;
 
   </script>
-
 
 </html>

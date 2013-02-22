@@ -19,6 +19,10 @@
       <script src="js/jquery.js"></script>
       <script src="js/custom.js"></script>
       <script src="js/jquery-ui-1.10.1.custom.js"></script>
+      <script src="js/raphael.js"></script>
+      <script src="js/leaflet.js"></script>
+      <script src="js/rlayer.js"></script>
+
 
 
   </head>
@@ -36,19 +40,9 @@
   <!-- include cartodb.js library -->
   <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
   <script>
-
-/*
-var config = {
-
-  graph: {
-    width: 164,
-    height: 120
-  }
-};
-*/
 	
     function main() {
-      cartodb.createVis('map', 'http://tv2.cartodb.com/api/v1/viz/3638/viz.json', {
+      cartodb.createVis('map', 'http://tv2.cartodb.com/api/v1/viz/3839/viz.json', {
           shareable: true,
           title: true,
           description: true,

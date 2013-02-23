@@ -34,7 +34,7 @@ $(document).ready(function() {
 	//   width: 200, // width of the box
 	//   position: 'bottom|right' // top, bottom, left and right are available
 	// });
-
+	
 	$("#graphcontainer").click(function() {	
 		// add layer to existing map
 		time=new Date(start_time*1000);
@@ -93,3 +93,4 @@ function queryAndAdd(t1,t2){
 		addToMap(map,data);
 	});
 }
+

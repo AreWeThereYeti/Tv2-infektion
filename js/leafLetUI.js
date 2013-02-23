@@ -8,8 +8,21 @@ function addToMap(map,data){
 		
 		var point = map.latLngToLayerPoint([data.rows[i].lat, data.rows[i].lon]);
 	
-		$("body").append("<div class = 'markeranim' style='top: "+point.y+"px; left: "+point.x+"px;'></div>")
-		$(".markeranim:last-child").animate({'opacity':0,'width':0,'height':0},1000);
+		$("body").append("<div class = 'markeranim' style='top: "+point.y+"px; left: "+point.x+"px;'></div>");
+		$(".markeranim:last-child").animate(
+			{
+				'opacity':0,
+				'width':0,
+				'height':0
+			},
+			{
+				duration:1000,
+				complete: function(){
+					//console.log('removing animation');
+		      $(this).remove();
+		    }
+			}
+		);
 	}
 /*
 	

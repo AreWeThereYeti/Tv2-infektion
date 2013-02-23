@@ -7,12 +7,15 @@ html, body, #map {
 	padding: 0;
 	margin: 0;
 	top: 0%;
-	}
+}
+
+#map{
+}
 
 #graphcontainer{
 	z-index: 5;
-	top: 90%;
-	position: relative;
+	bottom: 2px;
+	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #f5f5f5;

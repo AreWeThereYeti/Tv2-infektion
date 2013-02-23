@@ -1,6 +1,7 @@
 var start_time=1326441605;	//: Fri Jan 13 2012 09:00:05 GMT+0100 (CET)
 var end_time=1361464566;		//: Thu Feb 21 2013 17:36:06 GMT+0100 (CET)
 var diff=end_time-start_time;
+
 var time_span=diff/1000;
 var map;
 var day_interval=5;				//frame jump in days

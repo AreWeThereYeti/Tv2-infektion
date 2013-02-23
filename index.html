@@ -8,8 +8,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 -->
   
-
-
     <!-- <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" /> -->
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
@@ -19,14 +17,18 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
     
-      <link rel="stylesheet" href="css/mycss.css" />
-      <script src="js/jquery.js"></script>
-      <script src="js/custom.js"></script>
-      <script src="js/jquery-ui-1.10.1.custom.js"></script>
-      <script src="js/raphael.js"></script>
-      <script src="js/leaflet.js"></script>
-      <script src="js/rlayer.js"></script>
-
+    <!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+    
+    <link rel="stylesheet" href="css/mycss.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="js/getCartoDBData.js"></script>
+    <script src="js/leafLetUI.js"></script>
+    <script src="js/raphael.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/rlayer.js"></script>
 
   </head>
     
@@ -39,7 +41,5 @@
   	</div>
     <div id="map"></div> 
   </body>
-
-  <!-- include cartodb.js library -->
-  <!-- <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script> -->
+  
 </html>

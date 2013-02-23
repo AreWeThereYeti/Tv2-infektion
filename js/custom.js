@@ -29,6 +29,7 @@ $(document).ready(function() {
 	
 	$("#graphcontainer").click(function() {
 	new L.Marker([54,12], {'fill': '#fff', 'stroke': '#000'}).addTo(map);
+/*
 	
 		for (var i=0;i<500;i++){
 				
@@ -40,10 +41,14 @@ $(document).ready(function() {
 				setTimeout(function() {
 					map.removeLayer(p);
 				}, 3000);
-			}		
+			}	
+*/	
+
+		console.log('clicked graphcontainer');
+		// add layer to existing map
+		//var test_query=0;
+		//setTimeout(function(), 2000);
+		queryCartoDb('select * from infektionskort where cartodb_id > 90',function(data){
+			addToMap(map,data);
 		});
-		
-	
-	var query = "SELECT cartodb_id,ST_AsGeoJSON(the_geom) as the_geom FROM {infektionskort} LIMIT 1"
-	console.log(query);
-});
+	});

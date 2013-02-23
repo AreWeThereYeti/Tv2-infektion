@@ -15,6 +15,7 @@
     
     <!-- LeafLet -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
     
     <!-- include cartodb.js library -->
@@ -26,17 +27,22 @@
     <script src="js/jquery-ui-1.10.1.custom.js"></script>
     <script src="js/getCartoDBData.js"></script>
     <script src="js/leafLetUI.js"></script>
-    <script src="js/raphael.js"></script>
+    <!-- <script src="js/raphael.js"></script> -->
     <script src="js/leaflet.js"></script>
-    <script src="js/rlayer.js"></script>
+    <!-- <script src="js/rlayer.js"></script> -->
+    <script src="js/helpers.js"></script>
 
   </head>
     
   <body>
   	<div id="graphcontainer">
   		<div id="time">
-	  		<span class="value day">day_value_from_db</span>/<span class="value month">month_value_from_db</span>/<span class="value year">year_value_from_db</span>
+        <!-- <span class="value day">day_value_from_db</span>/<span class="value month">month_value_from_db</span>/<span class="value year">year_value_from_db</span> -->
+        <span>Slide to date:</span>
+        <span id="date-txt"></span>
+        
 	  	</div>
+	  	<div id="slider"></div>
   		<div id="graph"></div>
   	</div>
     <div id="map"></div> 

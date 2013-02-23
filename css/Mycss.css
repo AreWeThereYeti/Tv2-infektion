@@ -24,3 +24,7 @@ html, body, #map {
 #graph{
 	background: #2d2d2d;
 }
+
+#slider{
+	margin-top: 15px;
+}

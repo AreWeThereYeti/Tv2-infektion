@@ -4,8 +4,9 @@ function queryCartoDb(query,callback){
 	
 	//query that works:
 	//'http://tv2.cartodb.com/api/v2/sql?q=select%20*%20from%20infektionskort%20where%20cartodb_id%20%3E%2090'
-	
-	
+
+	console.log('queryCartoDb ran with url: ' + 'http://tv2.cartodb.com/api/v2/sql?q='+query);
+
 	$.ajax({
 		type: "GET",
 		url: 'http://tv2.cartodb.com/api/v2/sql?q='+query,
@@ -19,3 +20,4 @@ function queryCartoDb(query,callback){
 	});
 }
 
+//select * from infektionskort where time > 1327737605000

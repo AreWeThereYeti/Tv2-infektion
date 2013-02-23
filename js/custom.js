@@ -28,18 +28,19 @@ $(document).ready(function() {
 	
 	
 	$("#graphcontainer").click(function() {
-		for (var i=0;i<5;i++){
+	new L.Marker([54,12], {'fill': '#fff', 'stroke': '#000'}).addTo(map);
+	
+		for (var i=0;i<500;i++){
 				
-				var x = new R.Pulse(
+				var p = new R.Pulse(
 						[54 + i,11 + i], 
 						5,
 						{'stroke': '#c22828', 'fill': '#c22828'}, 
-						{'stroke': '#c22828', 'stroke-width': 5});
-			}
-			
-				map.addLayer(x);
-				console.log(x);
-					
+						{'stroke': '#c22828', 'stroke-width': 5}).addTo(map);
+				setTimeout(function() {
+					map.removeLayer(p);
+				}, 3000);
+			}		
 		});
 		
 	

@@ -26,29 +26,22 @@ $(document).ready(function() {
 	//   position: 'bottom|right' // top, bottom, left and right are available
 	// });
 	
+	
 	$("#graphcontainer").click(function() {
-
-
-			var p = new R.Pulse(
-					[54,11], 
-					10,
-					{'stroke': '#c22828', 'fill': '#c22828'}, 
-					{'stroke': '#c22828', 'stroke-width': 5});
-
-			map.addLayer(p);
-			setTimeout(function() {
-				map.removeLayer(p);
+		for (var i=0;i<5;i++){
 				
-				map.addLayer(new R.Pulse(
-					[54,11], 
-					10,
-					{'stroke': '#c22828', 'fill': '#c22828'}, 
-					{'stroke': '#c22828', 'stroke-width': 0}));
-				
-			}, 3000);
+				var x = new R.Pulse(
+						[54 + i,11 + i], 
+						5,
+						{'stroke': '#c22828', 'fill': '#c22828'}, 
+						{'stroke': '#c22828', 'stroke-width': 5});
+			}
 			
-		
+				map.addLayer(x);
+				console.log(x);
+					
 		});
+		
 	
 	var query = "SELECT cartodb_id,ST_AsGeoJSON(the_geom) as the_geom FROM {infektionskort} LIMIT 1"
 	console.log(query);

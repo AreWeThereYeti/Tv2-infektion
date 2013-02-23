@@ -28,9 +28,23 @@ $(document).ready(function() {
 	//   position: 'bottom|right' // top, bottom, left and right are available
 	// });
 
+
 	$("#graphcontainer").click(function() {	
 		console.log('clicked graphcontainer');
-		L.marker([56.11, 10.44]).addTo(map);
+		// add layer to existing map
+		var data=getJSONdata();
+		console.log(data);
+		// cartodb.createLayer(map, {
+		//     type: 'cartodb',
+		//     options: {
+		//         table: 'infektionskort',
+		//         user_name: 'TV2',
+		//         query: 'select * from infektionskort where cartodb_id > 90'
+		//     }
+		// }).done(function(layer) {
+		// 	console.log(layer)
+		//     //map.addLayer(layer);
+		// });
 	});
 });
 

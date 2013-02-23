@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 	console.log('creating visualization');
 	
@@ -27,22 +25,9 @@ $(document).ready(function() {
 	// });
 	
 	
-	$("#graphcontainer").click(function() {
-	new L.Marker([54,12], {'fill': '#fff', 'stroke': '#000'}).addTo(map);
-/*
 	
-		for (var i=0;i<500;i++){
-				
-				var p = new R.Pulse(
-						[54 + i,11 + i], 
-						5,
-						{'stroke': '#c22828', 'fill': '#c22828'}, 
-						{'stroke': '#c22828', 'stroke-width': 5}).addTo(map);
-				setTimeout(function() {
-					map.removeLayer(p);
-				}, 3000);
-			}	
-*/	
+	$("#graphcontainer").click(function() {
+
 
 		console.log('clicked graphcontainer');
 		// add layer to existing map
@@ -52,3 +37,4 @@ $(document).ready(function() {
 			addToMap(map,data);
 		});
 	});
+});

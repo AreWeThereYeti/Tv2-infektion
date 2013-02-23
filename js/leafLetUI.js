@@ -8,9 +8,26 @@ function addToMap(map,data){
 		
 		var point = map.latLngToLayerPoint([data.rows[i].lat, data.rows[i].lon]);
 	
-		$("body").append("<div class = 'markeranim' style='top: "+point.y+"px; left: "+point.x+"px;'></div>")
-		$(".markeranim:last-child").animate({'opacity':0,'width':0,'height':0},1000);
-	}
+		
+		$("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12)+"px; left: "+(point.x-12)+"px;'></img>")
+		$(".markeranim:last-child").animate(
+			{
+				'width'		: '+=25',
+				'height'	: '+=25',
+				'top' 		: '-=13',
+				'left' 		: '-=13',
+				'opacity'	:	0
+
+			},
+			{
+				duration:1000,
+				complete: function(){
+				console.log('removing animation');
+		      $(this).remove();
+		    }
+			}
+		);
+			}
 /*
 	
 	var inf_marker = L.icon({

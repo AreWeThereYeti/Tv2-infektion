@@ -32,8 +32,9 @@ $(document).ready(function() {
 	$("#graphcontainer").click(function() {	
 		console.log('clicked graphcontainer');
 		// add layer to existing map
-		var data=getJSONdata();
-		console.log(data);
+		queryCartoDb('select * from infektionskort where cartodb_id > 90',function(data){
+			addToMap(map,data);
+		});
 		// cartodb.createLayer(map, {
 		//     type: 'cartodb',
 		//     options: {

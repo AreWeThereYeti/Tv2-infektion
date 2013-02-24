@@ -38,7 +38,6 @@ $(document).ready(function() {
 	$("#graphcontainer").click(function() {	
 		// add layer to existing map
 		time=new Date(start_time*1000);
-		console.log(new Date(time));
 		window.anim=setInterval(function(){queryAndAdd(time.setDate(time.getDate()+day_interval))},time_interval);
 	});
 	

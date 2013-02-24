@@ -6,7 +6,9 @@ function addToMap(map,data){
 		//L.marker([data.rows[i].lat, data.rows[i].lon]).addTo(map);
 		//map.addLayer(layer);
 		
-		var point = map.latLngToLayerPoint([data.rows[i].lat, data.rows[i].lon]);
+		var point = map.latLngToContainerPoint([data.rows[i].lat, data.rows[i].lon]);
+		var magnitude = [data.rows[i].mag]; /* clustering of multiple incident in a time period */
+		console.log(point)
 	
 		
 		$("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12)+"px; left: "+(point.x-12)+"px;'></img>")
@@ -20,7 +22,7 @@ function addToMap(map,data){
 
 			},
 			{
-				duration:1000,
+				duration:500,
 				complete: function(){
 				console.log('removing animation');
 		      $(this).remove();

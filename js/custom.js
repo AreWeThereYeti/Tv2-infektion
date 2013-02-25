@@ -47,14 +47,17 @@ $(document).ready(function() {
 	$("#slider").slider({
 	  slide: function( event, ui ) {
 			// console.log(ui.value);
-			if(prev_scroll_val<ui.value+1){
-				var time=Math.round(prev_scroll_val*(diff/100)+start_time);
-				var time_to=Math.round((ui.value+1)*(diff/100)+start_time);
-			}
-			else{
-				var time_to=Math.round(prev_scroll_val*(diff/100)+start_time);
-				var time=Math.round((ui.value+1)*(diff/100)+start_time);
-			}
+			// if(prev_scroll_val<ui.value+1){
+			// 	var time=Math.round(prev_scroll_val*(diff/100)+start_time);
+			// 	var time_to=Math.round((ui.value+1)*(diff/100)+start_time);
+			// }
+			// else{
+			// 	var time_to=Math.round(prev_scroll_val*(diff/100)+start_time);
+			// 	var time=Math.round((ui.value+1)*(diff/100)+start_time);
+			// }
+			
+			var time=Math.round(ui.value*(diff/100)+start_time);
+			var time_to=Math.round((ui.value+1)*(diff/100)+start_time);
 
 			var date=new Date(time*1000);
 			// console.log('slider time is: ' + time);

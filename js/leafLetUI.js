@@ -1,6 +1,4 @@
 function addToMap(map,data){
-	console.log('addToMap ran');
-	console.log(data);
 	
 	for(var i=0;i<data.rows.length;i++){
 		
@@ -16,8 +14,6 @@ function addToMap(map,data){
 	
 			var point = map.latLngToContainerPoint(latlng);
 			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
-			console.log('lat lon: ' + lat + ' , ' + lon);
-			console.log('magnitude: ' + magnitude);
 	
 			$("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12)+"px; left: "+(point.x-12)+"px;'></img>")
 			$(".markeranim:last-child").animate(
@@ -30,7 +26,7 @@ function addToMap(map,data){
 
 				},
 				{
-					duration:500,
+					duration:1000,
 					complete: function(){
 			      $(this).remove();
 			    }

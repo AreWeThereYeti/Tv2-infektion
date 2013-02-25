@@ -13,6 +13,7 @@ function addToMap(map,data){
 			var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
 	
 			var point = map.latLngToContainerPoint(latlng);
+			
 			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
 			
 			animateGeoPoint(point,magnitude);

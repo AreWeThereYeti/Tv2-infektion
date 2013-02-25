@@ -20,17 +20,18 @@ $(document).ready(function() {
 		console.log('get all dates returned');
 		// leaflet stuff
 		map = new L.Map('map', { 
-		    shareable: true,
-		    title: true,
-		    description: true,
-		    search: false,
-		    tiles_loader: true,
-		    zoom: 7,
-		    center: [56,10]
-		  });
-		L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-			attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms & Feedback</a>'
-		}).addTo(map);
+				    shareable: true,
+				    title: true,
+				    description: true,
+				    search: false,
+				    tiles_loader: true,
+				    zoom: 7,
+				    center: [56,10]
+				  });
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+		
 
 
 		// var box = window.vis.addOverlay({
@@ -47,7 +48,6 @@ $(document).ready(function() {
 		});
 
 
-		console.log(dates);
 		// setup slider functionality
 		$("#slider").slider({
 			min: 0,
@@ -68,9 +68,6 @@ $(document).ready(function() {
 	
 	
 	});
-	
-
-	
 });
 
 // function queryAndAdd(query){

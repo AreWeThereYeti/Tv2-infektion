@@ -1,5 +1,5 @@
 var start_time=1326441605;	//: Fri Jan 13 2012 09:00:05 GMT+0100 (CET)
-var end_time=1361464566;		//: Thu Feb 21 2013 17:36:06 GMT+0100 (CET)
+var end_time=1332023416;		//: Thu Feb 21 2013 17:36:06 GMT+0100 (CET)
 var diff=end_time-start_time;
 
 var time_span=diff/1000;
@@ -15,65 +15,61 @@ $(document).ready(function() {
 	//obs!!! remember to update paper height, width on window resize!!
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
 	
-	getStartDate();
-	
-	// leaflet stuff
-	map = new L.Map('map', { 
-	    shareable: true,
-	    title: true,
-	    description: true,
-	    search: false,
-	    tiles_loader: true,
-	    zoom: 7,
-	    center: [56,10]
-	  });
-	L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-	  attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms & Feedback</a>'
-	}).addTo(map);
-	
-	
-	// var box = window.vis.addOverlay({
-	//   type: 'infobox',
-	//   template: '<p>test</p>',
-	//   width: 200, // width of the box
-	//   position: 'bottom|right' // top, bottom, left and right are available
-	// });
-	
-	$("#graphcontainer").click(function() {	
-		// add layer to existing map
-		time=new Date(start_time*1000);
-		window.anim=setInterval(function(){queryAndAdd(time.setDate(time.getDate()+day_interval))},time_interval);
-	});
-	
-	
-	// setup slider functionality
-	$("#slider").slider({
-	  slide: function( event, ui ) {
-			// console.log(ui.value);
-			// if(prev_scroll_val<ui.value+1){
-			// 	var time=Math.round(prev_scroll_val*(diff/100)+start_time);
-			// 	var time_to=Math.round((ui.value+1)*(diff/100)+start_time);
-			// }
-			// else{
-			// 	var time_to=Math.round(prev_scroll_val*(diff/100)+start_time);
-			// 	var time=Math.round((ui.value+1)*(diff/100)+start_time);
-			// }
-			
-			var time=Math.round(ui.value*(diff/100)+start_time);
-			var time_to=Math.round((ui.value+1)*(diff/100)+start_time);
+	//getStartDate();
+	getAllDates(function(dates){
+		console.log('get all dates returned');
+		// leaflet stuff
+		map = new L.Map('map', { 
+		    shareable: true,
+		    title: true,
+		    description: true,
+		    search: false,
+		    tiles_loader: true,
+		    zoom: 7,
+		    center: [56,10]
+		  });
+		L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
+			attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms & Feedback</a>'
+		}).addTo(map);
 
-			var date=new Date(time*1000);
-			// console.log('slider time is: ' + time);
-			// console.log('slider date is: ' + date);
-			
-			$('#date-txt').html(date);
-			
-			//add to map
-			queryAndAdd(time,time_to);
-			
-			prev_scroll_val=ui.value;
-		}
+
+		// var box = window.vis.addOverlay({
+		//   type: 'infobox',
+		//   template: '<p>test</p>',
+		//   width: 200, // width of the box
+		//   position: 'bottom|right' // top, bottom, left and right are available
+		// });
+
+		$("#graphcontainer").click(function() {	
+			// add layer to existing map
+			time=new Date(start_time*1000);
+			window.anim=setInterval(function(){queryAndAdd(time.setDate(time.getDate()+day_interval))},time_interval);
+		});
+
+
+		console.log(dates);
+		// setup slider functionality
+		$("#slider").slider({
+			min: 0,
+			max: dates.length-1,
+		  slide: function( event, ui ) {
+				console.log(ui.value);
+				time=dates[ui.value];
+				console.log(time);
+
+				var date=new Date(time*1000);
+				$('#date-txt').html(date);
+
+				//add to map
+				queryAndAdd(time);
+				//prev_scroll_val=time;
+			}
+		});
+	
+	
 	});
+	
+
 	
 });
 
@@ -90,12 +86,12 @@ $(document).ready(function() {
 // 	});
 // }
 
-function queryAndAdd(t1,t2){
+function queryAndAdd(t){
 	// 
 	// console.log('showing between dates:');
 	// console.log(new Date(t1*1000));
 	// console.log(new Date(t2*1000));
-	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time BETWEEN '+ t1	+ ' AND ' + t2,function(data){
+	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time='+t.toString(),function(data){
 		addToMap(map,data);
 	});
 }

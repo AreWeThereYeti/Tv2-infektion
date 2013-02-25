@@ -11,6 +11,10 @@ html, body, #map {
 	font-family: Verdana, Geneva, sans-serif;
 	}
 
+svg{
+	pointer-events:none;
+}
+
 #graphcontainer{
 	z-index: 5;
 	bottom: 2%;

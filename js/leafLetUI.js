@@ -10,14 +10,31 @@ function addToMap(map,data){
 			
 			var lat=point_arr[j][0];
 			var lon=point_arr[j][1];
-			var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
-	
-			var point = map.latLngToContainerPoint(latlng);
+			
+			//leaflet way:
+			// var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
+			// var point = map.latLngToContainerPoint(latlng);
+			
+			//google way:
+			var latlng = new google.maps.LatLng(lat,lon);
+			var point=latlngToPoint (map, latlng, map.zoom);
+			
 			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
 			
 			animateGeoPoint(point,magnitude);
 		}
 	}
+}
+
+function latlngToPoint (map, latlng){
+	MyOverlay.prototype = new google.maps.OverlayView();
+	MyOverlay.prototype.onAdd = function() { }
+	MyOverlay.prototype.onRemove = function() { }
+	MyOverlay.prototype.draw = function() { }
+	function MyOverlay(map) { this.setMap(map); }
+	var overlay = new MyOverlay(map);
+	var projection = overlay.getProjection();
+	return projection.fromLatLngToContainerPixel(latlng);
 }
 
 function animateGeoPoint(point,magnitude,paper){

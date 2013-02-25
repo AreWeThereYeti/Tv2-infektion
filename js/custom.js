@@ -19,32 +19,58 @@ $(document).ready(function() {
 	getAllDates(function(dates){
 		console.log('get all dates returned');
 		// leaflet stuff
-		map = new L.Map('map', { 
-		    shareable: true,
-		    title: true,
-		    description: true,
-		    search: false,
-		    tiles_loader: true,
-		    zoom: 7,
-		    center: [56,10]
-		  });
-		L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-			attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms & Feedback</a>'
-		}).addTo(map);
+		// map = new L.Map('map', { 
+		//     shareable: true,
+		//     title: true,
+		//     description: true,
+		//     search: false,
+		//     tiles_loader: true,
+		//     zoom: 7,
+		//     center: [56,10]
+		//   });
+		// L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
+		// 	attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms & Feedback</a>'
+		// }).addTo(map);
 		
-		// var latlng = new google.maps.LatLng(56, 10);
-		//     var myOptions = {
-		//       zoom: 7,
-		//       center: latlng,
-		//       mapTypeId: google.maps.MapTypeId.ROADMAP
-		//     };
-		//     var map = new google.maps.Map($("#map"),myOptions);
-		//  
-		//     var marker = new google.maps.Marker({
-		//       position: latlng, 
-		//       map: map, 
-		//       title:"my hometown, Malim Nawar!"
-		//     });
+		
+		var styles = [
+		  {
+		    stylers: [
+		      { hue: "#ff0000" },
+		      { saturation: -20 }
+		    ]
+		  },{
+		    featureType: "road",
+		    elementType: "geometry",
+		    stylers: [
+		      { lightness: 100 },
+		      { visibility: "simplified" }
+		    ]
+		  },{
+		    featureType: "road",
+		    elementType: "labels",
+		    stylers: [
+		      { visibility: "off" }
+		    ]
+		  }
+		];
+		
+		var latlng = new google.maps.LatLng(56, 10);
+		console.log(latlng)
+    var myOptions = {
+      zoom: 7,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+			streetViewControl:false,
+			styles: styles
+    };
+    map = new google.maps.Map(document.getElementById('map'),myOptions);
+ 
+    // var marker = new google.maps.Marker({
+    //   position: latlng, 
+    //   map: map, 
+    //   title:"my hometown, Malim Nawar!"
+    // });
 
 
 		// var box = window.vis.addOverlay({
@@ -124,4 +150,5 @@ function setDateTxt(date){
 	$('#month-txt').html(date.getMonth()+1);
 	$('#year-txt').html(date.getFullYear());
 }
+
 

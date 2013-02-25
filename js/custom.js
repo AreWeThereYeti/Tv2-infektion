@@ -4,7 +4,7 @@ var diff=end_time-start_time;
 
 var time_span=diff/1000;
 var map;
-var day_interval=5;				//frame jump in days
+var day_interval=1;				//frame jump in days
 var time_interval=1000;  //frame time in ms
 var prev_scroll_val=0;
 
@@ -39,7 +39,6 @@ $(document).ready(function() {
 	$("#graphcontainer").click(function() {	
 		// add layer to existing map
 		time=new Date(start_time*1000);
-		console.log(new Date(time));
 		window.anim=setInterval(function(){queryAndAdd(time.setDate(time.getDate()+day_interval))},time_interval);
 	});
 	
@@ -90,7 +89,7 @@ function queryAndAdd(t1,t2){
 	// console.log('showing between dates:');
 	// console.log(new Date(t1*1000));
 	// console.log(new Date(t2*1000));
-	queryCartoDb('SELECT * FROM infektionskort WHERE time BETWEEN '+ t1	+ ' AND ' + t2,function(data){
+	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time BETWEEN '+ t1	+ ' AND ' + t2,function(data){
 		addToMap(map,data);
 	});
 }

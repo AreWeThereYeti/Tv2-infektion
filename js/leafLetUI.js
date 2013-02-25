@@ -1,30 +1,52 @@
 function addToMap(map,data){
-	// console.log('add to map ran with data: ');
-	// console.log(data);
-	// window.data=data;
-	for(var i=0;i<data.rows.length;i++){
-		//L.marker([data.rows[i].lat, data.rows[i].lon]).addTo(map);
-		//map.addLayer(layer);
-		
-		var point = map.latLngToLayerPoint([data.rows[i].lat, data.rows[i].lon]);
+	console.log('addToMap ran');
+	console.log(data);
 	
-		$("body").append("<div class = 'markeranim' style='top: "+point.y+"px; left: "+point.x+"px;'></div>");
-		$(".markeranim:last-child").animate(
-			{
-				'opacity':0,
-				'width':0,
-				'height':0
-			},
-			{
-				duration:1000,
-				complete: function(){
-					//console.log('removing animation');
-		      $(this).remove();
-		    }
-			}
-		);
+	for(var i=0;i<data.rows.length;i++){
+		
+		point_arr=data.rows[i].geo.split(';')
+		for(var j=0;j<point_arr.length;j++){
+			point_arr[j]=point_arr[j].split('-');
+			
+			console.log(point_arr[j])
+			
+			var lat=point_arr[j][0];
+			var lon=point_arr[j][1];
+			var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
+	
+			var point = map.latLngToContainerPoint(latlng);
+			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
+			console.log('lat lon: ' + lat + ' , ' + lon);
+			console.log('magnitude: ' + magnitude);
+	
+			$("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12)+"px; left: "+(point.x-12)+"px;'></img>")
+			$(".markeranim:last-child").animate(
+				{
+					'width'		: '+=25',
+					'height'	: '+=25',
+					'top' 		: '-=13',
+					'left' 		: '-=13',
+					'opacity'	:	0
+
+				},
+				{
+					duration:500,
+					complete: function(){
+			      $(this).remove();
+			    }
+				}
+			);
+		}
 	}
+	
+	
 /*
+	----------------------------------
+	leaf leat marker example:
+	----------------------------------
+	
+	//L.marker([data.rows[i].lat, data.rows[i].lon]).addTo(map);
+	//map.addLayer(layer);
 	
 	var inf_marker = L.icon({
     iconUrl: 'img/sprite.png',

@@ -19,7 +19,6 @@ function addToMap(map,data){
 				'top' 		: '-=13',
 				'left' 		: '-=13',
 				'opacity'	:	0
-
 			},
 			{
 				duration:500,

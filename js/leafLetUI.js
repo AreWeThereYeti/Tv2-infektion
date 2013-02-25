@@ -7,7 +7,7 @@ function addToMap(map,data){
 		//map.addLayer(layer);
 		
 		var point = map.latLngToContainerPoint([data.rows[i].lat, data.rows[i].lon]);
-		var magnitude = [data.rows[i].mag]; /* clustering of multiple incident in a time period */	
+/* 		var magnitude = [data.rows[i].mag]; /* clustering of multiple incident in a time period */	 
 	
 		$("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12+)+"px; left: "+(point.x-12)+"px;'></img>")
 		$(".markeranim:last-child").animate(

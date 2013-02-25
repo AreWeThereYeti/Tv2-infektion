@@ -11,6 +11,10 @@ html, body, #map {
 	font-family: Verdana, Geneva, sans-serif;
 	}
 
+svg{
+	pointer-events:none;
+}
+
 #graphcontainer{
 	z-index: 5;
 	bottom: 2%;
@@ -64,5 +68,5 @@ margin-top: -140px;
 }
 
 .ui-slider-handle{
-	margin-top: -6px;ß
+	margin-top: -6px;
 }

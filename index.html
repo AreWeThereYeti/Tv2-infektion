@@ -31,6 +31,7 @@
     <script src="js/leaflet.js"></script>
     <!-- <script src="js/rlayer.js"></script> -->
     <script src="js/helpers.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
   </head>
     
@@ -39,8 +40,14 @@
   	<div id="graphcontainer">
   		<div id="time">
         <!-- <span class="value day">day_value_from_db</span>/<span class="value month">month_value_from_db</span>/<span class="value year">year_value_from_db</span> -->
+        <button id="play">Play that funky music</button>
+        <button id="stop">Stop that hunky music</button>
         <span>Slide to date:</span>
-        <span id="date-txt"></span>
+        <span id="day-txt"></span>
+        <span class="date-divider"> - </span>
+        <span id="month-txt"></span>
+        <span class="date-divider"> - </span>
+        <span id="year-txt"></span>
         
 	  	</div>
 	 	<div id="plot"></div>

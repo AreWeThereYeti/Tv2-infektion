@@ -16,24 +16,6 @@ function addToMap(map,data){
 			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
 			
 			animateGeoPoint(point,magnitude);
-			
-			// $("body").append("<img src='img/sprite.png' alt='sprite' class='markeranim' style='top: "+(point.y-12)+"px; left: "+(point.x-12)+"px;'></img>")
-			// $(".markeranim:last-child").animate(
-			// 	{
-			// 		'width'		: '+=25',
-			// 		'height'	: '+=25',
-			// 		'top' 		: '-=13',
-			// 		'left' 		: '-=13',
-			// 		'opacity'	:	0
-			// 
-			// 	},
-			// 	{
-			// 		duration:1000,
-			// 		complete: function(){
-			//       $(this).remove();
-			//     }
-			// 	}
-			// );
 		}
 	}
 }
@@ -46,7 +28,7 @@ function animateGeoPoint(point,magnitude,paper){
 	// setup your circle
 	var circle = window.paper.circle(point.x, point.y, 10);
 	circle.attr("fill", "#f00");
-	circle.attr("opacity","0.5")
+	circle.attr("opacity","0.3")
 
 	// assign an id to the svn node
 	circle.node.id = 'circle';

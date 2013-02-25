@@ -12,6 +12,9 @@ $(document).ready(function() {
 	console.log('creating visualization');
 	//layer_url='http://tv2.cartodb.com/api/v1/viz/3839/viz.json';
 	
+	//obs!!! remember to update paper height, width on window resize!!
+	window.paper = Raphael(0,0,$(window).width(),$(window).height());
+	
 	getStartDate();
 	
 	// leaflet stuff

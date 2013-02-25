@@ -5,10 +5,10 @@ function addToMap(map,data){
 	for(var i=0;i<data.rows.length;i++){
 		
 		point_arr=data.rows[i].geo.split(';')
-		for(var j=0;j<point_arr.length;j++){
+		for(var j=0;j<point_arr.length-1;j++){
+			
 			point_arr[j]=point_arr[j].split('-');
 			
-			console.log(point_arr[j])
 			
 			var lat=point_arr[j][0];
 			var lon=point_arr[j][1];

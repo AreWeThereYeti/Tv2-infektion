@@ -6,10 +6,12 @@ var map;
 var day_interval=1;				//frame jump in days
 var time_interval=200;  //frame time in ms
 var prev_scroll_val=0;
+var plot_step;
 
 var day=86400000;		//day i milliseconds
 
 var play=false;
+var marker_margin
 
 $(document).ready(function() {
 	console.log('creating visualization');
@@ -17,6 +19,7 @@ $(document).ready(function() {
 	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
+	
 	
 	getStartDate(function(data){
 		console.log('got start date: ' + data);
@@ -31,6 +34,8 @@ $(document).ready(function() {
 			console.log('diff in days: ' + diff);
 			getAllDates(function(dates){
 				console.log('get all dates returned');
+				plot_step=$('#plot').width()/dates.length;
+				console.log(plot_step);
 				createMap();
 				addEventListeners();
 			});
@@ -72,6 +77,8 @@ function play_pause(){
 				setDateTxt(new Date(time_mili));
 				queryAndAdd(time_mili);
 				t+=1;
+				var new_margin=parseFloat($('#line-container').css('margin-left'))+plot_step;
+				$('#line-container').css('margin-left',new_margin);
 			}
 			else{
 				clearInterval(window.anim);

@@ -40,7 +40,6 @@ function addEventListeners(){
 		min: 0,
 		max: diff,
 	  slide: function( event, ui ) {
-			console.log('slide ran');
 			if(play){
 				play_pause();
 			}

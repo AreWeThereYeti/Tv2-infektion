@@ -18,85 +18,79 @@ function addToMap(map,data){
 			
 			//google way:
 			var latlng = new google.maps.LatLng(lat,lon);
-			var point=latlngToPoint (map, latlng, map.zoom);
+			//console.log(latlng.$a);
+			//console.log(latlng.ab);
+			//top left: 58.008098,7.272949
+			//top right: 58.378679,13.337402
+			//bottom left: 54.380557,7.185059
+			//bottom right: 54.521081,15.732422
+
+			if(latlng.$a>54.380557 &&  latlng.$a<58.008098 && latlng.ab>7.185059 && latlng.ab<15.732422 ){
+				var point=latlngToPoint(map, latlng, map.zoom);
+				var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
+				animateGeoPoint(point,magnitude);
+			}else{
+			 	console.log('point outside bonunding box');
+			}
 			
-			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
-			
-			animateGeoPoint(point,magnitude);
+
 		}
 	}
 }
 
 
 function createMap(){
-
-	// var styles = [
-	// 	{
-	//     stylers: [
-	//       { "visibility": "simplified" }
-	//     ]
-	//   },
-	// 	{
-	//     featureType: "water",
-	//     stylers: [
-	//       { "saturation": 42 },
-	//       { "color": "#161615" }
-	//     ]
-	//   },
-	// 	{
-	//     featureType: "landscape",
-	//     stylers: [
-	//       { "color": "#7f7d80" }
-	//     ]
-	//   },
-	// 	{
-	//     featureType: "road",
-	//     stylers: [
-	//       { "visibility": "off" }
-	//     ]
-	//   },
-	// 	{
-	//     featureType: "poi",
-	//     elementType: "geometry",
-	//     stylers: [
-	//       { "visibility": "off" }
-	//     ]
-	//   },
-	// 	{
-	//     featureType: "administrative",
-	//     elementType: "geometry"  
-	// 	}
-	// ]
-	// 
-	
-	
 	
 	var styles = [
-			  {
-			    stylers: [
-			      { hue: "#ff0000" },
-			      { saturation: -20 }
-			    ]
-			  },{
-			    featureType: "road",
-			    elementType: "geometry",
-			    stylers: [
-			      { lightness: 100 },
-			      { visibility: "simplified" }
-			    ]
-			  },{
-			    featureType: "road",
-			    elementType: "labels",
-			    stylers: [
-			      { visibility: "off" }
-			    ]
-			  }
-			];
-	
-
+	  {
+	    "stylers": [
+	      { "visibility": "simplified" }
+	    ]
+	  },{
+	    "featureType": "water",
+	    "stylers": [
+	      { "saturation": 42 },
+	      { "color": "#161615" }
+	    ]
+	  },{
+	    "featureType": "landscape",
+	    "stylers": [
+	      { "color": "#7f7d80" }
+	    ]
+	  },{
+	    "featureType": "road",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "featureType": "poi",
+	    "elementType": "geometry",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	  },{
+	    "featureType": "road.highway",
+	    "elementType": "geometry",
+	    "stylers": [
+	      { "visibility": "simplified" },
+	      { "color": "#434343" }
+	    ]
+	  },{
+	  },{
+	    "elementType": "labels.icon",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "elementType": "labels.text.stroke",
+	    "stylers": [
+	      { "visibility": "on" }
+	    ]
+	  }
+	];
 	
 	var latlng = new google.maps.LatLng(56, 10);
-	console.log(latlng)
   var myOptions = {
     zoom: 7,
     center: latlng,
@@ -121,7 +115,7 @@ function latlngToPoint (map, latlng){
 function animateGeoPoint(point,magnitude,paper){
 
 	// raphael setup
-	id=point.x.toString()+';'+point.y.toString();
+	//id=point.x.toString()+';'+point.y.toString();
 
 	// setup your circle
 	var circle = window.paper.circle(point.x, point.y, 10);

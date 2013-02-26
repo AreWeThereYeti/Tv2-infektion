@@ -1,15 +1,15 @@
-
 var start_time;	// first recorded time 
 var end_time;		// last recorded time
 var diff;				// diff in days
 
-//var time_span=diff/1000;
 var map;
 var day_interval=1;				//frame jump in days
 var time_interval=200;  //frame time in ms
 var prev_scroll_val=0;
 
 var day=86400000;		//day i milliseconds
+
+var play=false;
 
 $(document).ready(function() {
 	console.log('creating visualization');
@@ -44,6 +44,9 @@ function addEventListeners(){
 		min: 0,
 		max: diff,
 	  slide: function( event, ui ) {
+			if(play){
+				play_pause();
+			}
 			time=(ui.value*day)+(start_time);		//date time in milliseconds
 
 			var date=new Date(time);
@@ -51,13 +54,17 @@ function addEventListeners(){
 
 			//add to map
 			queryAndAdd(time);
-			//prev_scroll_val=time;
 		}
 	});
-	
-	$("#play").click(function() {	
-		// add layer to existing map
-		console.log('clicked play');
+}
+
+function play_pause(){
+	if(play){
+		console.log('stopping animation');
+		clearInterval(window.anim);
+		play=false;
+	}else{
+		console.log('playing animation');
 		t=0;
 		window.anim=setInterval(function(){
 			if(t<dates.length-1){
@@ -70,11 +77,8 @@ function addEventListeners(){
 				clearInterval(window.anim);
 			}
 		},time_interval);
-	});
-	
-	$("#stop").click(function() {
-		clearInterval(window.anim);
-	});
+		play=true;
+	}
 }
 
 function queryAndAdd(t){
@@ -82,10 +86,6 @@ function queryAndAdd(t){
 	t2=t+day;
 	t2=(t2-1000)/1000;
 	t=t/1000;
-	
-
-	
-	
 	
 	// console.log(t);
 	// console.log(t2);
@@ -95,15 +95,6 @@ function queryAndAdd(t){
 	});
 }
 
-// function queryAndAdd(t){
-// 	// 
-// 	// console.log('showing between dates:');
-// 	// console.log(new Date(t1*1000));
-// 	// console.log(new Date(t2*1000));
-// 	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time='+t.toString(),function(data){
-// 		addToMap(map,data);
-// 	});
-// }
 
 function setDateTxt(date){
 	$('#day-txt').html(date.getDate());
@@ -120,17 +111,22 @@ $(function() {
 			} else {
 			return true;
 			}
-			});
-			$('#playbutton').click(function(){
-			togglePlay();
-			return false;
-			});
-			 
-			function togglePlay(){
-			var $elem = $('#player').children(':first');
-			$elem.stop().show().animate({'marginTop':'-175px','marginLeft':'-175px','width':'350px','height':'350px','opacity':'0'},function(){
+	});
+	
+	$('#playbutton').click(function(){
+		togglePlay();
+		return false;
+	});
+	 
+	function togglePlay(){
+		play_pause();
+		var $elem = $('#player').children(':first');
+		$elem.stop().show().animate(
+			{'marginTop':'-175px','marginLeft':'-175px','width':'350px','height':'350px','opacity':'0'},
+			function(){
 				$(this).css({'width':'100px','height':'100px','margin-left':'-50px','margin-top':'-50px','opacity':'1','display':'none'});
-			});
-	$elem.parent().append($elem);
+			}
+		);
+		$elem.parent().append($elem);
 	}
 });

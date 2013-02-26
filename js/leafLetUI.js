@@ -17,23 +17,19 @@ function addToMap(map,data){
 			// var point = map.latLngToContainerPoint(latlng);
 			
 			//google way:
-			var latlng = new google.maps.LatLng(lat,lon);
-			//console.log(latlng.$a);
-			//console.log(latlng.ab);
+			var latlng = new google.maps.LatLng(parseFloat(lat),parseFloat(lon));
 			//top left: 58.008098,7.272949
 			//top right: 58.378679,13.337402
 			//bottom left: 54.380557,7.185059
 			//bottom right: 54.521081,15.732422
 
-			if(latlng.$a>54.380557 &&  latlng.$a<58.008098 && latlng.ab>7.185059 && latlng.ab<15.732422 ){
+			if(latlng.hb>54.380557 &&  latlng.hb<58.008098 && latlng.ib>7.185059 && latlng.ib<15.732422 ){
 				var point=latlngToPoint(map, latlng, map.zoom);
-				var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
-				animateGeoPoint(point,magnitude);
-			}else{
-			 	console.log('point outside bonunding box');
+				if(point){
+					var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
+					animateGeoPoint(point,magnitude);
+				}
 			}
-			
-
 		}
 	}
 }
@@ -87,21 +83,33 @@ function createMap(){
 	    "stylers": [
 	      { "visibility": "on" }
 	    ]
+	  },{
 	  }
-	];
+	]
+	// 
+	//width: 648px bredde
 	
-	var latlng = new google.maps.LatLng(56, 10);
+	var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+	
   var myOptions = {
     zoom: 7,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: new google.maps.LatLng(56, 10),
 		streetViewControl:false,
-		styles: styles
+ 		scaleControl: false,
+		mapTypeControl: false,
+		overviewMapControl: false,
+		panControl: false,
+		zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+    }
   };
   map = new google.maps.Map(document.getElementById('map'),myOptions);
+	//Associate the styled map with the MapTypeId and set it to display.
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
 }
 
-function latlngToPoint (map, latlng){
+function latlngToPoint(map, latlng){
 	MyOverlay.prototype = new google.maps.OverlayView();
 	MyOverlay.prototype.onAdd = function() { }
 	MyOverlay.prototype.onRemove = function() { }
@@ -109,7 +117,12 @@ function latlngToPoint (map, latlng){
 	function MyOverlay(map) { this.setMap(map); }
 	var overlay = new MyOverlay(map);
 	var projection = overlay.getProjection();
-	return projection.fromLatLngToContainerPixel(latlng);
+	try{
+	  return projection.fromLatLngToContainerPixel(latlng);
+	}
+	catch(err){
+		return false;
+	}
 }
 
 function animateGeoPoint(point,magnitude,paper){

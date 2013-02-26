@@ -95,7 +95,13 @@ function createMap(){
     zoom: 7,
     center: new google.maps.LatLng(56, 10),
 		streetViewControl:false,
-    mapTypeIds: []
+ 		scaleControl: false,
+		mapTypeControl: false,
+		overviewMapControl: false,
+		panControl: false,
+		zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+    }
   };
   map = new google.maps.Map(document.getElementById('map'),myOptions);
 	//Associate the styled map with the MapTypeId and set it to display.

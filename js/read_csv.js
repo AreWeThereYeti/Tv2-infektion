@@ -13,8 +13,6 @@ function readCSV(callback) {
 				data[i][1][j]=data[i][1][j].split('-');
 			}
 		}
-		//#FFCC00
-		window.the_data=data;
 		callback(data);
 	});
 }

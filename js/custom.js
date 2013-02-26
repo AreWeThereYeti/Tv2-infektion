@@ -14,10 +14,7 @@ var day=86400000;		//day i milliseconds
 var play=false;
 var marker_margin
 
-$(document).ready(function() {
-	console.log('creating visualization');
-	//layer_url='http://tv2.cartodb.com/api/v1/viz/3839/viz.json';
-	
+$(document).ready(function() {	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
 	
@@ -25,17 +22,10 @@ $(document).ready(function() {
 		all_data=data;
 		
 		start_time=getStartDate();
-		console.log('got start date: ');
-		console.log(new Date(start_time));
-		
 		end_time=getEndDate();
 		diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
-		console.log('got end time: ');
-		console.log(new Date(end_time));
-		console.log('diff in days: ' + diff);
 		
 		plot_step=$('#plot').width()/all_data.length;
-		console.log('plot_step: ' + plot_step);
 		
 		createMap();
 		addEventListeners();

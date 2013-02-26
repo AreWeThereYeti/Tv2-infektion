@@ -52,7 +52,7 @@ function addEventListeners(){
 			if(play){
 				play_pause();
 			}
-			time=(ui.value*day)+(start_time);		//date time in milliseconds
+			time=(ui.value*day)+start_time;		//date time in milliseconds
 
 			var date=new Date(time);
 			setDateTxt(date)

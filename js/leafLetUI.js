@@ -25,10 +25,10 @@ function addToMap(map,data){
 
 			if(latlng.hb>54.380557 &&  latlng.hb<58.008098 && latlng.ib>7.185059 && latlng.ib<15.732422 ){
 				var point=latlngToPoint(map, latlng, map.zoom);
-				var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
-				animateGeoPoint(point,magnitude);
-			}else{
-			 	console.log('point outside bonunding box');
+				if(point){
+					var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
+					animateGeoPoint(point,magnitude);
+				}
 			}
 		}
 	}
@@ -109,7 +109,7 @@ function createMap(){
   map.setMapTypeId('map_style');
 }
 
-function latlngToPoint (map, latlng){
+function latlngToPoint(map, latlng){
 	MyOverlay.prototype = new google.maps.OverlayView();
 	MyOverlay.prototype.onAdd = function() { }
 	MyOverlay.prototype.onRemove = function() { }
@@ -117,7 +117,12 @@ function latlngToPoint (map, latlng){
 	function MyOverlay(map) { this.setMap(map); }
 	var overlay = new MyOverlay(map);
 	var projection = overlay.getProjection();
-	return projection.fromLatLngToContainerPixel(latlng);
+	try{
+	  return projection.fromLatLngToContainerPixel(latlng);
+	}
+	catch(err){
+		return false;
+	}
 }
 
 function animateGeoPoint(point,magnitude,paper){

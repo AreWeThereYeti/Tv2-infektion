@@ -57,13 +57,12 @@ function addEventListeners(){
 	$("#play").click(function() {	
 		// add layer to existing map
 		console.log('clicked play');
-		//time=new Date(start_time*1000);
 		t=0;
 		window.anim=setInterval(function(){
 			if(t<dates.length-1){
-				var date=new Date(dates[t]*1000);
-				setDateTxt(date)
-				queryAndAdd(dates[t]);
+				var time_mili=(t*day)+(start_time);
+				setDateTxt(new Date(time_mili));
+				queryAndAdd(time_mili);
 				t+=1;
 			}
 			else{
@@ -81,17 +80,17 @@ function queryAndAdd(t){
 	// t is a date in milliseconds
 	t2=t+day;
 	t2=(t2-1000)/1000;
-	
-
-
-	console.log('showing between dates:');
-	console.log(new Date(t));
-	console.log(new Date(t2*1000));
-	
 	t=t/1000;
 	
-	console.log(t);
-	console.log(t2);
+	// 
+	// console.log('showing between dates:');
+	// console.log(new Date(t));
+	// console.log(new Date(t2*1000));
+	
+	
+	
+	// console.log(t);
+	// console.log(t2);
 	
 	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time BETWEEN '+ t	+ ' AND ' + t2,function(data){
 		addToMap(map,data);

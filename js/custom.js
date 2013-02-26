@@ -1,3 +1,4 @@
+var all_data;
 var start_time;	// first recorded time 
 var end_time;		// last recorded time
 var diff;				// diff in days
@@ -13,33 +14,21 @@ var day=86400000;		//day i milliseconds
 var play=false;
 var marker_margin
 
-$(document).ready(function() {
-	console.log('creating visualization');
-	//layer_url='http://tv2.cartodb.com/api/v1/viz/3839/viz.json';
-	
+$(document).ready(function() {	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
 	
-	
-	getStartDate(function(data){
-		console.log('got start date: ' + data);
-		start_time=data*1000;
-		start_time=new Date(start_time).setHours(0);
-		start_time=new Date(start_time).setMinutes(0);
-		start_time=new Date(start_time).setSeconds(0);
-		getEndDate(function(data){
-			console.log('got end date: ' + data);
-			end_time=data*1000;
-			diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
-			console.log('diff in days: ' + diff);
-			getAllDates(function(dates){
-				console.log('get all dates returned');
-				plot_step=$('#plot').width()/dates.length;
-				console.log(plot_step);
-				createMap();
-				addEventListeners();
-			});
-		})
+	readCSV(function(data){
+		all_data=data;
+		
+		start_time=getStartDate();
+		end_time=getEndDate();
+		diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
+		
+		plot_step=$('#plot').width()/all_data.length;
+		
+		createMap();
+		addEventListeners();
 	});
 });
 
@@ -53,7 +42,8 @@ function addEventListeners(){
 				play_pause();
 			}
 			time=(ui.value*day)+start_time;		//date time in milliseconds
-
+			$('#line-container').css('margin-left',plot_step*ui.value);
+			
 			var date=new Date(time);
 			setDateTxt(date)
 
@@ -72,7 +62,7 @@ function play_pause(){
 		console.log('playing animation');
 		t=0;
 		window.anim=setInterval(function(){
-			if(t<dates.length-1){
+			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
 				setDateTxt(new Date(time_mili));
 				queryAndAdd(time_mili);
@@ -95,12 +85,12 @@ function queryAndAdd(t){
 	t2=(t2-1000)/1000;
 	t=t/1000;
 	
-	// console.log(t);
-	// console.log(t2);
+	data=get_time_row(t,t2);
 	
-	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time BETWEEN '+ t	+ ' AND ' + t2,function(data){
+	if(data){
 		addToMap(map,data);
-	});
+	}
+	
 }
 
 

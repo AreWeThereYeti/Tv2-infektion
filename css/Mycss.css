@@ -146,6 +146,9 @@ svg{
 
 #line-container{
 	margin-top: -102px;
+	margin-left:0px;
+}
+
+#line-wrapper{
 	margin-left: 11px;
-	color: 
 }

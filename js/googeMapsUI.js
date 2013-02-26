@@ -1,34 +1,26 @@
 function addToMap(map,data){
 	
-	for(var i=0;i<data.rows.length;i++){
+	for(var i=0;i<data.length;i++){
 		
-		point_arr=data.rows[i].geo.split(';')
-		for(var j=0;j<point_arr.length-1;j++){
-			
-			point_arr[j]=point_arr[j].split('-');
-			
-			
-			var lat=point_arr[j][0];
-			var lon=point_arr[j][1];
+		var lat=data[i][0];
+		var lon=data[i][1];
+		
+		//leaflet way:
+		// var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
+		// var point = map.latLngToContainerPoint(latlng);
+		
+		//google way:
+		var latlng = new google.maps.LatLng(parseFloat(lat),parseFloat(lon));
+		//top left: 58.008098,7.272949
+		//top right: 58.378679,13.337402
+		//bottom left: 54.380557,7.185059
+		//bottom right: 54.521081,15.732422
 
-			
-			//leaflet way:
-			// var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
-			// var point = map.latLngToContainerPoint(latlng);
-			
-			//google way:
-			var latlng = new google.maps.LatLng(parseFloat(lat),parseFloat(lon));
-			//top left: 58.008098,7.272949
-			//top right: 58.378679,13.337402
-			//bottom left: 54.380557,7.185059
-			//bottom right: 54.521081,15.732422
-
-			if(latlng.hb>54.380557 &&  latlng.hb<58.008098 && latlng.ib>7.185059 && latlng.ib<15.732422 ){
-				var point=latlngToPoint(map, latlng, map.zoom);
-				if(point){
-					var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
-					animateGeoPoint(point,magnitude);
-				}
+		if(latlng.hb>54.380557 &&  latlng.hb<58.008098 && latlng.ib>7.185059 && latlng.ib<15.732422 ){
+			var point=latlngToPoint(map, latlng, map.zoom);
+			if(point){
+				var magnitude = parseFloat(data[i][2]); /* clustering of multiple incident in a time period */
+				animateGeoPoint(point,magnitude);
 			}
 		}
 	}
@@ -153,31 +145,3 @@ function animateGeoPoint(point,magnitude,paper){
 		}
 	);
 }
-
-
-
-
-
-/*
-	----------------------------------
-	leaf leat marker example:
-	----------------------------------
-	
-	//L.marker([data.rows[i].lat, data.rows[i].lon]).addTo(map);
-	//map.addLayer(layer);
-	
-	var inf_marker = L.icon({
-    iconUrl: 'img/sprite.png',
-
-    iconSize:     [51, 51], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76], // point from which the popup should open relative to the iconAnchor
-    opacity:	  [0.5]
-    });
-
-
-    L.marker([51.5, -0.09], {icon: inf_marker}).addTo(map).bindPopup("Andreas har en lille pik!");
-    var marker = L.marker([51.5, -0.09]).addTo(map);
-*/

@@ -20,7 +20,7 @@ $(document).ready(function() {
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
 	
-	readCSV(function(data){
+	getDB(function(data){
 		all_data=data;
 		
 		start_time=getStartDate();

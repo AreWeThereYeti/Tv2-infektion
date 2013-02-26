@@ -11,25 +11,33 @@ html, body, #map {
 	font-family: Verdana, Geneva, sans-serif;
 	}
 
-#graphcontainer{
+svg{
+	pointer-events:none;
+}
+
+
+
+#plotcontainer{
 	z-index: 5;
-	bottom: 2%;
+	top: 20px;
 	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #f5f5f5;
 	border-radius: 10px;
-	height: 12%;
-	width: 70%;
-	left:15%;
+	height: 100px;
+	width: 220px;
+	left: 15%;
 }
 
+
 #plot{
-margin-top: -140px;
+	margin-top: 10px;
 	background-image: url(../img/graf.png);
 	background-repeat: no-repeat;
-	width: 90%;
-	height: 200px;
+	background-size: 174px 78px;
+	width: 174px;
+	height: 78px;
 	margin-left: auto;
 	margin-right: auto;
 	-webkit-background-size: cover;
@@ -39,11 +47,25 @@ margin-top: -140px;
 
 }
 
-#slider{
-	margin-top: -25px;
+#graphcontainer{
+	z-index: 5;
+	bottom: 30px;
+	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	height: 50px;
+	width: 50%;
+	left:25%;
+}
+
+#slider{
+	margin-top: 10px;
+	margin-left: 25px;
+	margin-right: auto;
 	width: 90%;
+	clear: right;
 }
 
 .markeranim{
@@ -64,5 +86,44 @@ margin-top: -140px;
 }
 
 .ui-slider-handle{
-	margin-top: -6px;ß
+	background: #f00 !important;
+	margin-top: -6px;
+}
+
+#playbutton{
+	position: absolute;
+	right: 79%;
+	bottom: 7%;
+	display: block;
+	float: right;
+	margin-right: 30px;
+	margin-top: -35px;
+	padding: 5px 10px 6px;
+	color: white;
+	font-weight: bold;
+	background-color: #999;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	float: right;
+	cursor: pointer;
+}
+
+#player{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+#playbutton:hover{
+	background-color: #111;
+	color: white;
+}
+
+#time{
+	margin-left:15px;
 }

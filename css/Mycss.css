@@ -138,5 +138,9 @@ svg{
 
 #line-container{
 	margin-top: -55px;
+	margin-left:0px;
+}
+
+#line-wrapper{
 	margin-left: 11px;
 }

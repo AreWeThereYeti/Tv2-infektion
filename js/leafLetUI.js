@@ -10,15 +10,112 @@ function addToMap(map,data){
 			
 			var lat=point_arr[j][0];
 			var lon=point_arr[j][1];
-			var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
-	
-			var point = map.latLngToContainerPoint(latlng);
+
+			
+			//leaflet way:
+			// var latlng = new L.LatLng(parseFloat(lat), parseFloat(lon));
+			// var point = map.latLngToContainerPoint(latlng);
+			
+			//google way:
+			var latlng = new google.maps.LatLng(lat,lon);
+			var point=latlngToPoint (map, latlng, map.zoom);
 			
 			var magnitude = parseFloat(point_arr[j][2]); /* clustering of multiple incident in a time period */
 			
 			animateGeoPoint(point,magnitude);
 		}
 	}
+}
+
+
+function createMap(){
+
+	// var styles = [
+	// 	{
+	//     stylers: [
+	//       { "visibility": "simplified" }
+	//     ]
+	//   },
+	// 	{
+	//     featureType: "water",
+	//     stylers: [
+	//       { "saturation": 42 },
+	//       { "color": "#161615" }
+	//     ]
+	//   },
+	// 	{
+	//     featureType: "landscape",
+	//     stylers: [
+	//       { "color": "#7f7d80" }
+	//     ]
+	//   },
+	// 	{
+	//     featureType: "road",
+	//     stylers: [
+	//       { "visibility": "off" }
+	//     ]
+	//   },
+	// 	{
+	//     featureType: "poi",
+	//     elementType: "geometry",
+	//     stylers: [
+	//       { "visibility": "off" }
+	//     ]
+	//   },
+	// 	{
+	//     featureType: "administrative",
+	//     elementType: "geometry"  
+	// 	}
+	// ]
+	// 
+	
+	
+	
+	var styles = [
+			  {
+			    stylers: [
+			      { hue: "#ff0000" },
+			      { saturation: -20 }
+			    ]
+			  },{
+			    featureType: "road",
+			    elementType: "geometry",
+			    stylers: [
+			      { lightness: 100 },
+			      { visibility: "simplified" }
+			    ]
+			  },{
+			    featureType: "road",
+			    elementType: "labels",
+			    stylers: [
+			      { visibility: "off" }
+			    ]
+			  }
+			];
+	
+
+	
+	var latlng = new google.maps.LatLng(56, 10);
+	console.log(latlng)
+  var myOptions = {
+    zoom: 7,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl:false,
+		styles: styles
+  };
+  map = new google.maps.Map(document.getElementById('map'),myOptions);
+}
+
+function latlngToPoint (map, latlng){
+	MyOverlay.prototype = new google.maps.OverlayView();
+	MyOverlay.prototype.onAdd = function() { }
+	MyOverlay.prototype.onRemove = function() { }
+	MyOverlay.prototype.draw = function() { }
+	function MyOverlay(map) { this.setMap(map); }
+	var overlay = new MyOverlay(map);
+	var projection = overlay.getProjection();
+	return projection.fromLatLngToContainerPixel(latlng);
 }
 
 function animateGeoPoint(point,magnitude,paper){
@@ -76,4 +173,5 @@ function animateGeoPoint(point,magnitude,paper){
 
     L.marker([51.5, -0.09], {icon: inf_marker}).addTo(map).bindPopup("Andreas har en lille pik!");
     var marker = L.marker([51.5, -0.09]).addTo(map);
+<<<<<<< HEAD
 */

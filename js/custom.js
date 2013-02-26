@@ -58,6 +58,8 @@ function play_pause(){
 		console.log('stopping animation');
 		clearInterval(window.anim);
 		play=false;
+		$('#line-container').css('margin-left',0);
+
 	}else{
 		console.log('playing animation');
 		t=0;
@@ -74,6 +76,7 @@ function play_pause(){
 				clearInterval(window.anim);
 			}
 			$( "#slider" ).slider( "value", t );
+
 		},time_interval);
 		play=true;
 	}
@@ -120,7 +123,7 @@ $(function() {
 		play_pause();
 		var $elem = $('#player').children(':first');
 		$elem.stop().show().animate(
-			{'marginTop':'-175px','marginLeft':'-175px','width':'350px','height':'350px','opacity':'0'},
+			{'marginTop':'-175px','marginLeft':'-175px','width':'300px','height':'300px','opacity':'0'},
 			function(){
 				$(this).css({'width':'100px','height':'100px','margin-left':'-50px','margin-top':'-50px','opacity':'1','display':'none'});
 			}

@@ -48,7 +48,6 @@ svg{
 	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url(../img/stripe.png);
 	background-color: #f5f5f5;
 	border-radius: 5px;
 	height: 30px;
@@ -60,7 +59,7 @@ svg{
 	margin-top: 14px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 90%;
+	width: 95%;
 	clear: right;
 }
 
@@ -90,14 +89,15 @@ svg{
 #playbutton{
 	position: absolute;
 	margin-left: 10px;
-	margin-bottom: 40px;
-	margin-top: -85px;	
-	margin-right: 30px;
-	padding: 6px 20px 5px;
+	margin-bottom: 30px;	
 	display: block;
+	float: right;
+	margin-right: 30px;
+	margin-top: -90px;
+	padding: 10px 15px 10px;
 	color: white;
 	font-weight: bold;
-	background-color: #008627;
+	background-color: #00601b;
 	border: 1px solid #00360f;
 	text-decoration: none;
 	-moz-border-radius: 5px;

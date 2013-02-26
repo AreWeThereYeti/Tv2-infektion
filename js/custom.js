@@ -1,3 +1,4 @@
+var all_data;
 var start_time;	// first recorded time 
 var end_time;		// last recorded time
 var diff;				// diff in days
@@ -20,26 +21,24 @@ $(document).ready(function() {
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
 	
-	
-	getStartDate(function(data){
-		console.log('got start date: ' + data);
-		start_time=data*1000;
-		start_time=new Date(start_time).setHours(0);
-		start_time=new Date(start_time).setMinutes(0);
-		start_time=new Date(start_time).setSeconds(0);
-		getEndDate(function(data){
-			console.log('got end date: ' + data);
-			end_time=data*1000;
-			diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
-			console.log('diff in days: ' + diff);
-			getAllDates(function(dates){
-				console.log('get all dates returned');
-				plot_step=$('#plot').width()/dates.length;
-				console.log(plot_step);
-				createMap();
-				addEventListeners();
-			});
-		})
+	readCSV(function(data){
+		all_data=data;
+		
+		start_time=getStartDate();
+		console.log('got start date: ');
+		console.log(new Date(start_time));
+		
+		end_time=getEndDate();
+		diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
+		console.log('got end date: ');
+		console.log(new Date(end_date));
+		console.log('diff in days: ' + diff);
+		
+		plot_step=$('#plot').width()/all_data.length;
+		console.log('plot_step: ' + plot_step);
+		
+		createMap();
+		addEventListeners();
 	});
 });
 

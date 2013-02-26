@@ -15,29 +15,24 @@ svg{
 	pointer-events:none;
 }
 
-
-
 #plotcontainer{
 	z-index: 5;
-	top: 20px;
+	top: 30px;
 	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 30px;
 	background-color: #f5f5f5;
 	border-radius: 10px;
-	height: 100px;
-	width: 220px;
-	left: 15%;
+	height: 70px;
+	width: 140px;
 }
-
 
 #plot{
 	margin-top: 10px;
 	background-image: url(../img/graf.png);
 	background-repeat: no-repeat;
 	background-size: 174px 78px;
-	width: 174px;
-	height: 78px;
+	width: 116px;
+	height: 52px;
 	margin-left: auto;
 	margin-right: auto;
 	-webkit-background-size: cover;
@@ -92,13 +87,13 @@ svg{
 
 #playbutton{
 	position: absolute;
-	right: 79%;
-	bottom: 7%;
+	margin-left: 30px;
+	margin-bottom: 40px;	
 	display: block;
 	float: right;
 	margin-right: 30px;
-	margin-top: -35px;
-	padding: 5px 10px 6px;
+	margin-top: -70px;
+	padding: 5px 5px 6px;
 	color: white;
 	font-weight: bold;
 	background-color: #999;
@@ -111,17 +106,28 @@ svg{
 	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 	float: right;
 	cursor: pointer;
+		-webkit-transition: background-color 250ms linear;
+     -moz-transition: background-color 250ms linear;
+     -o-transition: background-color 250ms linear;
+     -ms-transition: background-color 250ms linear;
+     transition: background-color 250ms linear;
 }
 
 #player{
 	position: absolute;
 	top: 50%;
 	left: 50%;
+
 }
 
 #playbutton:hover{
 	background-color: #111;
 	color: white;
+     -webkit-transition: background-color 250ms linear;
+     -moz-transition: background-color 250ms linear;
+     -o-transition: background-color 250ms linear;
+     -ms-transition: background-color 250ms linear;
+     transition: background-color 250ms linear;
 }
 
 #time{

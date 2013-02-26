@@ -76,6 +76,7 @@ function play_pause(){
 			else{
 				clearInterval(window.anim);
 			}
+			$( "#slider" ).slider( "value", t );
 		},time_interval);
 		play=true;
 	}

@@ -127,7 +127,7 @@ function animateGeoPoint(point,magnitude,paper){
 	// pin a reference to the raphael object on the svg node
 	$(circle.node).data('raphael',circle);
 	
-	var to_mag=2*magnitude;
+	var to_mag=10*(Math.log(magnitude));
 	
 	circle.animate(
 		{

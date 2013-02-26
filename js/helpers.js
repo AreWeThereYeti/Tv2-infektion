@@ -12,8 +12,20 @@ function getEndDate(){
 function get_time_row(t1,t2){
 	for(var i=0;i<all_data.length;i++){
 		if(all_data[i][0]>t1 && all_data[i][0]<t2){
-			return all_data[i][1];
+			return [all_data[i][1],i];		//date, row
 		}
 	}
 	return false;
+}
+
+function get_counter_val(row){
+	var count=0;
+	for(var i=0;i<row+1;i++){
+		for(var j=0;j<all_data[i][1].length;j++){
+			if(all_data[i][1][j][2]){
+				count+=parseInt(all_data[i][1][j][2]);
+			}
+		}
+	}
+	return count;
 }

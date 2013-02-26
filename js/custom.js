@@ -8,11 +8,13 @@ var day_interval=1;				//frame jump in days
 var time_interval=200;  //frame time in ms
 var prev_scroll_val=0;
 var plot_step;
+var time_row;
 
 var day=86400000;		//day i milliseconds
 
 var play=false;
-var marker_margin
+var marker_margin;
+var current_day=0;
 
 $(document).ready(function() {	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
@@ -38,10 +40,12 @@ function addEventListeners(){
 		min: 0,
 		max: diff,
 	  slide: function( event, ui ) {
+			console.log('slide ran');
 			if(play){
 				play_pause();
 			}
 			time=(ui.value*day)+start_time;		//date time in milliseconds
+			current_day=ui.value;
 			$('#line-container').css('margin-left',plot_step*ui.value);
 			
 			var date=new Date(time);
@@ -57,14 +61,17 @@ function play_pause(){
 	if(play){
 		console.log('stopping animation');
 		clearInterval(window.anim);
+		pause_pos=
 		play=false;
 	}else{
-		console.log('playing animation');
-		t=0;
+		t=current_day;
+		console.log('playing animation from day: ' + t);
 		window.anim=setInterval(function(){
 			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
+				current_day=t;
 				setDateTxt(new Date(time_mili));
+				current_time=time_mili;
 				queryAndAdd(time_mili);
 				t+=1;
 				var new_margin=parseFloat($('#line-container').css('margin-left'))+plot_step;
@@ -85,10 +92,13 @@ function queryAndAdd(t){
 	t2=(t2-1000)/1000;
 	t=t/1000;
 	
-	data=get_time_row(t,t2);
-	
-	if(data){
-		addToMap(map,data);
+	var data=get_time_row(t,t2);
+	if(data[1]!=false){
+		time_row=data[1];
+	}
+	if(data[0]){
+		setCounterVal(get_counter_val(time_row));
+		addToMap(map,data[0]);
 	}
 	
 }
@@ -98,6 +108,10 @@ function setDateTxt(date){
 	$('#day-txt').html(date.getDate());
 	$('#month-txt').html(date.getMonth()+1);
 	$('#year-txt').html(date.getFullYear());
+}
+
+function setCounterVal(counter){
+	$('#counter_val').html(counter);
 }
 
 

@@ -145,31 +145,3 @@ function animateGeoPoint(point,magnitude,paper){
 		}
 	);
 }
-
-
-
-
-
-/*
-	----------------------------------
-	leaf leat marker example:
-	----------------------------------
-	
-	//L.marker([data.rows[i].lat, data.rows[i].lon]).addTo(map);
-	//map.addLayer(layer);
-	
-	var inf_marker = L.icon({
-    iconUrl: 'img/sprite.png',
-
-    iconSize:     [51, 51], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76], // point from which the popup should open relative to the iconAnchor
-    opacity:	  [0.5]
-    });
-
-
-    L.marker([51.5, -0.09], {icon: inf_marker}).addTo(map).bindPopup("Andreas har en lille pik!");
-    var marker = L.marker([51.5, -0.09]).addTo(map);
-*/

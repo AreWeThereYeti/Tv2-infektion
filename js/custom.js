@@ -30,8 +30,8 @@ $(document).ready(function() {
 		
 		end_time=getEndDate();
 		diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
-		console.log('got end date: ');
-		console.log(new Date(end_date));
+		console.log('got end time: ');
+		console.log(new Date(end_time));
 		console.log('diff in days: ' + diff);
 		
 		plot_step=$('#plot').width()/all_data.length;
@@ -71,7 +71,7 @@ function play_pause(){
 		console.log('playing animation');
 		t=0;
 		window.anim=setInterval(function(){
-			if(t<dates.length-1){
+			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
 				setDateTxt(new Date(time_mili));
 				queryAndAdd(time_mili);
@@ -94,12 +94,12 @@ function queryAndAdd(t){
 	t2=(t2-1000)/1000;
 	t=t/1000;
 	
-	// console.log(t);
-	// console.log(t2);
+	data=get_time_row(t,t2);
 	
-	queryCartoDb('SELECT * FROM infektionskort_2 WHERE time BETWEEN '+ t	+ ' AND ' + t2,function(data){
+	if(data){
 		addToMap(map,data);
-	});
+	}
+	
 }
 
 

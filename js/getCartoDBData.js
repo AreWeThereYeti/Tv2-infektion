@@ -9,7 +9,7 @@ function queryCartoDb(query,callback){
 
 	$.ajax({
 		type: "GET",
-		url: 'http://tv2.cartodb.com/api/v2/sql?q='+query,
+		url: 'http://tv2.cartodb.com/api/v2/sql?q='+query+'&api_key=6df5723b5b2cedbc8e6a3b43886cce62742fd734',
 		dataType: "jsonp",
 		success: function(data){
 			callback(data);

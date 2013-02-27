@@ -27,7 +27,7 @@ $(document).ready(function() {
 		end_time=getEndDate();
 		diff=Math.ceil(((end_time-start_time))/1000/60/60/24);
 		
-		plot_step=$('#plot').width()/all_data.length;
+		plot_step=$('#plot').width()/diff;
 		
 		createMap();
 		addEventListeners();
@@ -45,6 +45,7 @@ function addEventListeners(){
 			}
 			time=(ui.value*day)+start_time;		//date time in milliseconds
 			current_day=ui.value;
+			console.log(ui.value);
 			$('#line-container').css('margin-left',plot_step*ui.value);
 			
 			var date=new Date(time);

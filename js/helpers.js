@@ -19,6 +19,7 @@ function get_time_row(t1,t2){
 }
 
 function get_counter_val(row){
+	//console.log('get_counter_val ran with row: ' + row);
 	var count=0;
 	for(var i=0;i<row+1;i++){
 		for(var j=0;j<all_data[i][1].length;j++){
@@ -27,6 +28,7 @@ function get_counter_val(row){
 			}
 		}
 	}
+	//console.log(count);
 	return count;
 }
 
@@ -36,12 +38,20 @@ function parseDBData(data){
 		p_data[i]=[];
 		p_data[i][0]=data.rows[i].time;
 		p_data[i][1]=data.rows[i].geo.split(';')
+
 		if(p_data[i][1][p_data[i][1].length-1]==''){
 			p_data[i][1].pop();
 		}
 		for(var j=0;j<p_data[i][1].length;j++){
 			p_data[i][1][j]=p_data[i][1][j].split('-');
+			for(var k=0;k<p_data[i][1][j].length;k++){
+				if (p_data[i][1][j][k]==''){
+					p_data[i][1][j].splice(k,1);
+				}
+			}
 		}
 	}
 	return p_data;
 }
+
+//[9][13]

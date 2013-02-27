@@ -49,7 +49,7 @@ html, body, #map {
 	margin-right: auto;
 	background-color: #a9a9a9;
 	height: 10px;
-	min-height: 10px;
+	min-height: 30px;
 	width: 100%;
 	
 }

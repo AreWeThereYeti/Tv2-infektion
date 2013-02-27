@@ -176,3 +176,11 @@ function toggle(el){
     } 
     return false;
 }
+
+$(window).resize(function() {
+	if($('#map').is(':visible')){
+		$('#map').css("height",$(window).height()-30);
+		$('#graphcontainer').css("height",30);
+
+	}
+});

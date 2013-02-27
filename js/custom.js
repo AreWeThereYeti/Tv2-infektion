@@ -42,7 +42,7 @@ function addEventListeners(){
 				play_pause();
 			}
 			time=(ui.value*day)+start_time;		//date time in milliseconds
-			$('#line-container').css('margin-left',plot_step*ui.value);
+			$('#line-container').css('margin-left',2*(plot_step*ui.value));
 			
 			var date=new Date(time);
 			setDateTxt(date)

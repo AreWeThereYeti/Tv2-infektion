@@ -3,7 +3,8 @@ body{
 }
 
 html, body, #map {
-	height: 100%;
+	background-color: #a9a9a9;
+	height: 98%;
 	padding: 0;
 	margin: 0;
 	top: 0%;
@@ -24,7 +25,7 @@ svg{
 	background-image: url(../img/stripe.png);
 	border-radius: 5px;
 	height: 180px;
-	width: 210px;
+	width: 190px;
 }
 
 #plot{
@@ -44,15 +45,13 @@ svg{
 
 #graphcontainer{
 	z-index: 5;
-	bottom: 55px;
-	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: #f5f5f5;
-	border-radius: 5px;
-	height: 30px;
-	width: 50%;
-	left:25%;
+	background-color: #a9a9a9;
+	height: 10px;
+	min-height: 10px;
+	width: 100%;
+	
 }
 
 #slider{
@@ -82,9 +81,13 @@ svg{
 }
 
 .ui-slider-handle{
-	background: #f00 !important;
-	margin-top: -7px;
+	background: #e23535 !important;
+	border: #a63a3a 1px solid !important;
+	margin-top: -10px;
+	width: 1.6em !important;
+	height: 1.6em !important;
 }
+
 
 #playbutton{
 	position: absolute;
@@ -93,7 +96,7 @@ svg{
 	display: block;
 	float: right;
 	margin-right: 30px;
-	margin-top: -90px;
+	margin-top: -100px;
 	padding: 10px 15px 10px;
 	color: white;
 	font-weight: bold;
@@ -149,10 +152,14 @@ h1{
 }
 
 #line-container{
-	margin-top: -102px;
-	margin-left:0px;
+	margin-top: -115px;
+
 }
 
 #line-wrapper{
-	margin-left: 18px;
+	margin-left:-173px;
+
+}
+
+#line{
 }

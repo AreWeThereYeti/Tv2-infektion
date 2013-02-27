@@ -74,15 +74,17 @@ function addEventListeners(){
 
 function play_pause(){
 	if(play){
-		console.log('stopping animation');
+		$('#play_pause_btn').attr('src','img/play.png');
+    $('#play_pause_btn').removeClass();
+		$('#play_pause_btn').addClass("play");
 		clearInterval(window.anim);
-		pause_pos=
 		play=false;
-		$('#line-container').css('margin-left',0);
-
 	}else{
 		t=current_day;
 		window.anim=setInterval(function(){
+			$('#play_pause_btn').attr('src','img/pause.png');
+	    $('#play_pause_btn').removeClass();
+			$('#play_pause_btn').addClass("pause");
 			$('#svg-overlay').show();
 			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
@@ -102,6 +104,9 @@ function play_pause(){
 		},time_interval);
 		play=true;
 	}
+  return false;
+	
+
 }
 
 function queryAndAdd(t){
@@ -144,7 +149,7 @@ $(function() {
 			}
 	});
 	
-	$('.play').click(function(){
+	$('#play_pause_btn').click(function(){
 		togglePlay();
 		return false;
 	});
@@ -162,21 +167,21 @@ $(function() {
 	}
 });
 
-function toggle(el){
-    if(el.className!="pause")
-    {
-        el.src='img/pause.png';
-        el.className="pause";
-        console.log("pause");
-    }
-    else if(el.className=="pause")
-    {
-        el.src='img/play.png';
-        el.className="play";
-        console.log("play");
-    } 
-    return false;
-}
+// function toggle(el){
+//     if(el.className!="pause")
+//     {
+//         el.src='img/pause.png';
+//         el.className="pause";
+//         console.log("pause");
+//     }
+//     else if(el.className=="pause")
+//     {
+//         el.src='img/play.png';
+//         el.className="play";
+//         console.log("play");
+//     } 
+//     return false;
+// }
 
 $(window).resize(function() {
 	if($('#map').is(':visible')){

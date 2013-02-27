@@ -67,6 +67,12 @@ function addEventListeners(){
 	$('#svg-overlay').mouseup(function(){
 		$(this).show();
 	});
+	
+	$('#play_pause_btn').click(function(){
+		play_pause();
+		return false;
+	});
+	
 }
 
 function play_pause(){
@@ -74,6 +80,7 @@ function play_pause(){
 		$('#play_pause_btn').attr('src','img/play.png');
     $('#play_pause_btn').removeClass();
 		$('#play_pause_btn').addClass("play");
+		togglePlay($('#player').children('#pause'));
 		clearInterval(window.anim);
 		play=false;
 	}else{
@@ -83,6 +90,7 @@ function play_pause(){
 	    $('#play_pause_btn').removeClass();
 			$('#play_pause_btn').addClass("pause");
 			$('#svg-overlay').show();
+			togglePlay($('#player').children('#play'));
 			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
 				current_day=t;
@@ -135,50 +143,15 @@ function setCounterVal(counter){
 	$('#counter_val').html(counter);
 }
 
-
-$(function() {
-	$(document).keypress(function(e){
-		if ((e.which && e.which == 32) || (e.keyCode && e.keyCode == 32)) {
-			togglePlay();
-			return false;
-			} else {
-			return true;
-			}
-	});
-	
-	$('#play_pause_btn').click(function(){
-		togglePlay();
-		return false;
-	});
-	 
-	function togglePlay(){
-		play_pause();
-		var $elem = $('#player').children(':first');
-		$elem.stop().show().animate(
-			{'marginTop':'-175px','marginLeft':'-175px','width':'300px','height':'300px','opacity':'0'},
-			function(){
-				$(this).css({'width':'100px','height':'100px','margin-left':'-50px','margin-top':'-50px','opacity':'1','display':'none'});
-			}
-		);
-		$elem.parent().append($elem);
-	}
-});
-
-// function toggle(el){
-//     if(el.className!="pause")
-//     {
-//         el.src='img/pause.png';
-//         el.className="pause";
-//         console.log("pause");
-//     }
-//     else if(el.className=="pause")
-//     {
-//         el.src='img/play.png';
-//         el.className="play";
-//         console.log("play");
-//     } 
-//     return false;
-// }
+function togglePlay($elem){
+	$elem.stop().show().animate(
+		{'marginTop':'-175px','marginLeft':'-175px','width':'300px','height':'300px','opacity':'0'},
+		function(){
+			$(this).css({'width':'100px','height':'100px','margin-left':'-50px','margin-top':'-50px','opacity':'1','display':'none'});
+		}
+	);
+	$elem.parent().append($elem);
+}
 
 $(window).resize(function() {
 	if($('#map').is(':visible')){

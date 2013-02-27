@@ -143,7 +143,7 @@ $(function() {
 			}
 	});
 	
-	$('#playbutton').click(function(){
+	$('.play').click(function(){
 		togglePlay();
 		return false;
 	});
@@ -160,3 +160,19 @@ $(function() {
 		$elem.parent().append($elem);
 	}
 });
+
+function toggle(el){
+    if(el.className!="pause")
+    {
+        el.src='img/pause.png';
+        el.className="pause";
+        console.log("pause");
+    }
+    else if(el.className=="pause")
+    {
+        el.src='img/play.png';
+        el.className="play";
+        console.log("play");
+    } 
+    return false;
+}

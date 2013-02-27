@@ -105,7 +105,6 @@ function play_pause(){
 				clearInterval(window.anim);
 			}
 			$( "#slider" ).slider( "value", t );
-
 		},time_interval);
 		play=true;
 	}

@@ -153,12 +153,13 @@ h1{
 
 #line-container{
 	margin-top: -115px;
-
+	
 }
 
 #line-wrapper{
-	margin-left:-173px;
+	margin-left:7px;
 }
 
 #line{
+	margin-left:0px;
 }

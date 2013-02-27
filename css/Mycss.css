@@ -11,7 +11,7 @@ html, body, #map {
 	font-family: Verdana, Geneva, sans-serif;
 	}
 
-svg{
+#svg-overlay{
 	pointer-events:none;
 }
 

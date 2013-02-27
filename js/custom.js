@@ -20,7 +20,8 @@ $(document).ready(function() {
 	console.log('document is ready');	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
-	console.log('getting db');
+  window.paper.canvas.id='svg-overlay';
+
 	getDB(function(data){
 		console.log('got DB');
 		all_data=data;
@@ -42,12 +43,15 @@ function addEventListeners(){
 		min: 0,
 		max: diff,
 	  slide: function( event, ui ) {
+			var val=ui.value;
+			$('#svg-overlay').show();
+			//var val=parseInt($('#slider').slider("option", "value"));
 			if(play){
 				play_pause();
 			}
-			time=(ui.value*day)+start_time;		//date time in milliseconds
-			current_day=ui.value;
-			$('#line-container').css('margin-left',plot_step*ui.value);
+			var time=(val*day)+start_time;		//date time in milliseconds
+			current_day=val;
+			$('#line-container').css('margin-left',plot_step*val);
 			
 			var date=new Date(time);
 			setDateTxt(date)
@@ -55,6 +59,15 @@ function addEventListeners(){
 			//add to map
 			queryAndAdd(time);
 		}
+	});
+	
+	$('#svg-overlay').mousedown(function(){
+		console.log('hiding layer');
+		$(this).hide();
+	});
+	$('#svg-overlay').mouseup(function(){
+		console.log('showing layer');
+		$(this).show();
 	});
 }
 
@@ -68,6 +81,7 @@ function play_pause(){
 		t=current_day;
 		console.log('playing animation from day: ' + t);
 		window.anim=setInterval(function(){
+			$('#svg-overlay').show();
 			if(t<all_data.length-1){
 				var time_mili=(t*day)+(start_time);
 				current_day=t;

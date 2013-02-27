@@ -1,0 +1,39 @@
+#plotcontainer{
+	z-index: 5;
+	top: 5%;
+	position: absolute;
+	margin-left: 10px;
+	background-color: whiteSmoke;
+	background-image: url(../img/stripe.png);
+	border-radius: 5px;
+	height: 450px;
+	width: 600px;
+	right: 1%;
+}
+
+#plot{
+	background-image: url(../img/graf_tv.png);
+	background-repeat: no-repeat;
+	background-size: 174px 78px;
+	width: 600px;
+	height: 270px;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 5px;
+}
+
+#line-container {
+	margin-top: -287px;
+}
+
+.play, .pause {
+width: 75px;
+height: auto;
+margin-right: auto;
+margin-top: 25px;
+margin-left: 7px;
+}

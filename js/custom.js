@@ -51,7 +51,7 @@ function addEventListeners(){
 			}
 			var time=(val*day)+start_time;		//date time in milliseconds
 			current_day=val;
-			$('#line-container').css('margin-left',2*(plot_step*val));
+			$('#line-container').css('margin-left',(plot_step*val));
 			
 			var date=new Date(time);
 			setDateTxt(date)

@@ -6,35 +6,42 @@
 	background-color: whiteSmoke;
 	background-image: url(../img/stripe.png);
 	border-radius: 5px;
-	height: 450px;
-	width: 600px;
+	height: 390px;
+	width: 500px;
 	right: 1%;
 }
 
 #plot{
 	background-image: url(../img/graf_tv.png);
 	background-repeat: no-repeat;
-	background-size: 174px 78px;
-	width: 600px;
-	height: 270px;
+	background-size: 480px 216px;
+	width: 480px;
+	height: 216px;
 	margin-left: auto;
 	margin-right: auto;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     margin-bottom: 5px;
 }
 
+#line-wrapper{
+	margin-left: 1px;
+}
+
 #line-container {
-	margin-left: -6px;
-	margin-top: -287px;
+	margin-top: -257px;
 }
 
 .play, .pause {
 width: 75px;
 height: auto;
 margin-right: auto;
-margin-top: 25px;
-margin-left: 7px;
+margin-top: 15px;
+margin-left: 10px;
+}
+
+#slider{
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 93%;
+	clear: right;
 }

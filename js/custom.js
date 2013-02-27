@@ -16,11 +16,13 @@ var play=false;
 var marker_margin;
 var current_day=0;
 
-$(document).ready(function() {	
+$(document).ready(function() {
+	console.log('document is ready');	
 	//obs!!! remember to update paper height, width on window resize!! (no need)
 	window.paper = Raphael(0,0,$(window).width(),$(window).height());
-	
+	console.log('getting db');
 	getDB(function(data){
+		console.log('got DB');
 		all_data=data;
 		
 		start_time=getStartDate();
@@ -45,7 +47,6 @@ function addEventListeners(){
 			}
 			time=(ui.value*day)+start_time;		//date time in milliseconds
 			current_day=ui.value;
-			console.log(ui.value);
 			$('#line-container').css('margin-left',plot_step*ui.value);
 			
 			var date=new Date(time);

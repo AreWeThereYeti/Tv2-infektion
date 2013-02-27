@@ -1,6 +1,16 @@
 function getDB(callback){
-	$.get('http://tv2.cartodb.com/api/v2/sql?q=SELECT time, geo FROM infektionskort_2&api_key=6df5723b5b2cedbc8e6a3b43886cce62742fd734',function(data){
-		callback(parseDBData(data));
+	console.log('getDB ran');
+	url='http://tv2.cartodb.com/api/v2/sql?q=SELECT time, geo FROM infektionskort_2&api_key=6df5723b5b2cedbc8e6a3b43886cce62742fd734';
+	// $.getJSON('http://tv2.cartodb.com/api/v2/sql?q=SELECT time, geo FROM infektionskort_2&api_key=6df5723b5b2cedbc8e6a3b43886cce62742fd734',function(data){
+	// 	callback(parseDBData(data));
+	// });
+	
+	$.ajax({
+	  dataType: "jsonp",
+	  url: url,
+	  success: function(data){
+			callback(parseDBData(data))
+		}
 	});
 }
 

@@ -182,8 +182,6 @@ $(function() {
 
 $(window).resize(function() {
 	if($('#map').is(':visible')){
-		$('#map').css("height",$(window).height()-30);
-		$('#graphcontainer').css("height",30);
-
+		$('#map').css("height",$(window).height()-$('#graphcontainer').height());
 	}
 });

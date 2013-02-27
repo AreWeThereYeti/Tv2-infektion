@@ -45,7 +45,6 @@ function addEventListeners(){
 	  slide: function( event, ui ) {
 			var val=ui.value;
 			$('#svg-overlay').show();
-			//var val=parseInt($('#slider').slider("option", "value"));
 			if(play){
 				play_pause();
 			}
@@ -62,11 +61,9 @@ function addEventListeners(){
 	});
 	
 	$('#svg-overlay').mousedown(function(){
-		console.log('hiding layer');
 		$(this).hide();
 	});
 	$('#svg-overlay').mouseup(function(){
-		console.log('showing layer');
 		$(this).show();
 	});
 }

@@ -44,6 +44,7 @@ function addEventListeners(){
 		max: diff,
 	  slide: function( event, ui ) {
 			var val=ui.value;
+			//console.log(val);
 			$('#svg-overlay').show();
 			//var val=parseInt($('#slider').slider("option", "value"));
 			if(play){
@@ -55,7 +56,7 @@ function addEventListeners(){
 			
 			var date=new Date(time);
 			setDateTxt(date)
-
+			
 			//add to map
 			queryAndAdd(time);
 		}
@@ -81,7 +82,6 @@ function play_pause(){
 
 	}else{
 		t=current_day;
-		console.log('playing animation from day: ' + t);
 		window.anim=setInterval(function(){
 			$('#svg-overlay').show();
 			if(t<all_data.length-1){
@@ -111,6 +111,7 @@ function queryAndAdd(t){
 	t=t/1000;
 	
 	var data=get_time_row(t,t2);
+	//console.log(data);
 	if(data[1]!=false){
 		time_row=data[1];
 	}

@@ -139,8 +139,9 @@ function setDateTxt(date){
 }
 
 function setCounterVal(counter){
-	$('#counter_val').html((2*(counter.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))));
-	console.log(counter);
+	var dotcounter = counter*2
+	$('#counter_val').html((dotcounter.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")));
+	console.log(dotcounter);
 }
 
 function togglePlay($elem){

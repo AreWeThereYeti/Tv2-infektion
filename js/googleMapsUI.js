@@ -92,7 +92,8 @@ function createMap(){
 		overviewMapControl: false,
 		panControl: false,
 		zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL
+        	style: google.maps.ZoomControlStyle.MEDIUM,
+        	position: google.maps.ControlPosition.RIGHT
     }
   };
   map = new google.maps.Map(document.getElementById('map'),myOptions);
@@ -100,6 +101,7 @@ function createMap(){
   map.mapTypes.set('map_style', styledMap);
   map.setMapTypeId('map_style');
 }
+
 
 function latlngToPoint(map, latlng){
 	MyOverlay.prototype = new google.maps.OverlayView();
@@ -124,7 +126,7 @@ function animateGeoPoint(point,magnitude,paper){
 
 	// setup your circle
 	var circle = window.paper.circle(point.x, point.y, 10);
-	circle.attr("fill", "#f00");
+	circle.attr("fill", "#FFF81F");
 	circle.attr("opacity","0.3")
 
 	// assign an id to the svn node

@@ -139,7 +139,8 @@ function setDateTxt(date){
 }
 
 function setCounterVal(counter){
-	$('#counter_val').html(counter);
+	$('#counter_val').html((2*(counter.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))));
+	console.log(counter);
 }
 
 function togglePlay($elem){
